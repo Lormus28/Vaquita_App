@@ -1,5 +1,6 @@
 # backend files to ignore
 back_end/node_modules
+back_end/.env
 
 # frontend files to ignore
 # Logs
