@@ -1,6 +1,6 @@
 import Router from "express-promise-router";
 
-const GroupsRouter = () => {
+const groupsRouter = () => {
 
     const router = Router();
 
@@ -9,4 +9,4 @@ const GroupsRouter = () => {
     return router;
 };
 
-export default GroupsRouter;
+export default groupsRouter;
