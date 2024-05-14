@@ -2,11 +2,11 @@ import Router from "express-promise-router";
 
 const groupsRouter = () => {
 
-    const router = Router();
+    const grouter = Router();
 
-    router.get('/', (req, res, next) => {res.end(); next()});
+    grouter.get('/', (req, res, next) => {res.end(); next()});
 
-    return router;
+    return grouter;
 };
 
 export default groupsRouter;

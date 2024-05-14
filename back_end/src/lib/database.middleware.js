@@ -10,7 +10,7 @@ const pool = new Pool(
     // database: process.env.PGDATBASE,
     // password: process.env.PGPASSWORD,
     // port: process.env.PGPORT,
-});
+})
 
 const requireTransactionMap = {
     POST: true,
@@ -27,7 +27,7 @@ const connectDatabase = async (req,res,next) => {
         if (req.doTransaction) {
             await req.dbClient.query('BEGIN');
         }
-        console.info('database connected');
+        console.info('Database connected');
         next();
     } catch (err) {
         res.status(503).end();
@@ -43,7 +43,6 @@ const commitDatabase = async (req,_res,next) => {
     req.dbClient.release();
     req.dbClient = undefined;
     req.doTransaction = undefined;
-    
     console.info('database disconnected')
     next();
 }
@@ -68,6 +67,7 @@ const rollbackDatabase = async (err, req, res, next) => {
     });
     next();
 }
+
 
 export {
     connectDatabase,

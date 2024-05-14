@@ -7,10 +7,10 @@ const asyncRouter = () =>{
     const router = Router();
 
     router.use(connectDatabase);
+    router.use("/groups", groupsRouter());
     router.use(commitDatabase);
     router.use(rollbackDatabase);
-    router.use("/groups", groupsRouter());
-
+    
     return router;
 }
 
