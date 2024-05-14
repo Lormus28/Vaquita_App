@@ -3,12 +3,12 @@ import Controller from "../controllers/groups.controller.js";
 
 const groupsRouter = () => {
 
-    const grouter = Router();
+    const router = Router();
     const controller = Controller();
 
-    grouter.get('/', controller.getAll);
+    router.get('/', controller.getAll);
 
-    return grouter;
+    return router;
 };
 
 export default groupsRouter;

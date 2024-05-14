@@ -13,10 +13,24 @@ const controller = ()=>{
         res.status(200).json(groups);
 
         next();
+    };
+
+    const getById = async (req,res,next) =>{
+
+        const service = Service (req.dbClient);
+        const group = await service.getById(req.params.id);
+
+        if (group){
+            res.status(200).json(group); 
+        } else{
+            res.startus(404).end();
+        }
+        next();
     }
 
     return{
-        getAll
+        getAll,
+        getById
     };
 }
 
