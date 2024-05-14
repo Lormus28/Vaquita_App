@@ -4,7 +4,7 @@ const groupsRouter = () => {
 
     const router = Router();
 
-    router.get('/', () => {});
+    router.get('/', (req, res, next) => {res.end(); next()});
 
     return router;
 };
