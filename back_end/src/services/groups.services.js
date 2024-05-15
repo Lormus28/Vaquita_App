@@ -1,22 +1,25 @@
 import Repository from "../repositories/groups.repository.js";
 
-const service = (dbClient)=>{
+const service = (dbClient) => {
 
-    const repository = Repository (dbClient);
+    const repository = Repository(dbClient);
 
-    const getAll = async () =>{
-
+    const getAll = async () => {
         return await repository.getAll();
     }
 
-    const getById = async (id) =>{
-        
+    const getById = async (id) => {
         return await repository.getById(id);
+    }
+    
+    const deleteById = async (id) => {
+        return await repository.deleteById(id);
     }
 
     return {
         getAll,
-        getById
+        getById,
+        deleteById
     };
 }
 
