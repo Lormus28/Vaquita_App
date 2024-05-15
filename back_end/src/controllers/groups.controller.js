@@ -32,10 +32,18 @@ const controller = () => {
         }
     }
 
+    const create = async (req, res) => {
+        const service = Service(req.dbClient);
+        const group = req.body;
+        const createdGroup = await service.create(group);
+        res.status(201).json(createdGroup);
+    }
+
     return {
         getAll,
         getById,
         deleteById,
+        create,
     }
 }
 
