@@ -6,6 +6,7 @@ const CREATE = `
     VALUES ($1,$2)
     RETURNING id, name, color
 `;
+const COUNT_BY_NAME = 'SELECT COUNT (*) AS COUNT FROM groups WHERE name = $1';
 
 const Repository = (dbClient) => {
 
@@ -33,12 +34,22 @@ const Repository = (dbClient) => {
         return result.rows[0];
     }
 
+    const countByName = async({name}) => {
+        const result = await dbClient.query(COUNT_BY_NAME, [name]);
+        const count = parseInt(result.rows[0].count); //Validación de resultado de query para que sea un número, ayuda con error del desarrollador
+        if (isNaN(count)){
+            throw 'Invalid countByNmae result, is not a number';
+        }
+        return count;
+    } //Esta consulta al repositorio es necesaria para validar que el nombre del grupo sea único y no exista en la BD
+
 
     return {
         getAll,
         getById,
         deleteById,
-        create
+        create,
+        countByName
     };
 };
 

@@ -1,4 +1,5 @@
 import Repository from "../repositories/groups.repository.js";
+import AppError from "../lib/application.error.js";
 
 const service = (dbClient) => {
 
@@ -17,15 +18,17 @@ const service = (dbClient) => {
     }
 
     const create = async (group) => {
-        
-        // // validaciones de campos primero
-        // const name = validatedName(group.name);
 
-        // // validaciones con la base de datos
-        // const groupCount = await repository.countByName(name);
-        // if (groupCount > 0) {
-        //     throw AppError('Ya existe un grupo con ese nombre', 409);
-        // }
+        //limpiar los datos
+        const name = (group.name || '').trim();
+        if (name.length === 0){
+            throw AppError ('El nombre es requerido', 400);
+        }
+        if (name.length < 30){
+            throw AppError ('El nombre debe ser menor a 30 caracteres')
+        }
+        
+
 
         return await repository.create(group);
     }
