@@ -39,11 +39,28 @@ const controller = () => {
         res.status(201).json(createdGroup);
     }
 
+    const fullUpdateById = async(req, res)=> {
+        const service = Service(req.dbClient);
+        const id = req.params.id;
+        const group = {
+            ...req.body,
+            id
+        }; // los tres puntos copia las propiedades del objeto y al final les agrega el id que cree en la linea 44
+        const updatedGroup = await service.fullUpdateById(group);
+        if (updatedGroup){
+            res.status(200).end();
+        } else {
+            res.status(404).end();
+        }
+        res.status(201).json(createdGroup);
+    }
+
     return {
         getAll,
         getById,
         deleteById,
         create,
+        fullUpdateById
     }
 }
 
